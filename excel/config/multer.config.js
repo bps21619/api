@@ -1,0 +1,17 @@
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+    destination: (req,file,cb)=>{
+     cb(null,_basedir+'/uploads')   
+
+    },
+
+    filename: (req,file,cb)=>{
+        cb(null,file.fieldname+"-"+Date.mow()+"-"+file.originalname)
+    }
+})
+
+
+const upload = multer({storage: storage})
+
+module.exports = upload;
