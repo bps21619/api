@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <h1>bps<h1>
+</head>
+<body>
+    
+    <script>
+
+        if("geolocation" in navigator){
+            console.log("geolocation available");
+            navigator.geolocation.getCurrentPosition( async position => {
+              const { latitude, longitude } = position.coords;
+              //console.log(position);
+              document.getElementById('latitude').textContent = position.coords.latitude
+              document.getElementById('longitude').textContent = position.coords.longitude
+  // Show a map centered at latitude / longitude.
+
+
+  const data = (latitude,longitude);
+  const options = {
+      method: 'POST',
+      headers: {'Content-type': "application/json"},
+      body: JSON.stringify(data)
+
+  }; 
+         const res =await  fetch("/bps",options)
+         const data1 = await res.json()
+         console.log(data1)
+});
+        }
+        else
+        {
+            console.log("geolocation not available");
+        }
+    </script>
+
+    <p> latitude: <span id ="latitude"></span>&deg;</p>
+    <p> longitude: <span id ="longitude">&deg;</span></p>
+
+</body>
+</html>
